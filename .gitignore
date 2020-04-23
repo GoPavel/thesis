@@ -1,0 +1,9 @@
+latex-styles/
+*.aux
+*.log
+*.toc
+*.run.xml
+*.gz
+*.tct
+*.bcf
+*.pdf
