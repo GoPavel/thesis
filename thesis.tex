@@ -5,6 +5,7 @@
 
 \usepackage{amssymb}
 \usepackage{mathtools}
+\usepackage{lstcoq}
 
 \begin{document}
 \studygroup{M3439}
@@ -382,17 +383,17 @@ Coq - это один из таких инструментов, который �
 
    Например, $max\_elt\ a\ r$ - утверждение, что $a$ является максимальным событием в отношении $r$ определяется следующим образом:
    % TODO опции float???
-   \begin{lstlisting}[mathescape=true, language=haskell]
-     Definition max_elt {A: Type} (r: relation) (a: A) :=
-       $\forall (b: A)\ (REL: r\ a\ b), \bot$
+   \begin{lstlisting}[mathescape=true, language=coq]
+     Definition max_elt {A: Type} (r: relation A) (a: A) :=
+       forall (b: A) (REL: r a b), False
    \end{lstlisting}
 
    Переформулируем: так как $ a $ - максимальный элемент, отношение, которое начинается в $ a $ и переходит по $ r $, должно быть пусто (иначе кодомен $ r $ будет больше).
 
    Поэтому докажем лемму:
-   \begin{lstlisting}[mathescape=true, language=haskell]
-     Lemma max_elt_iff_kat {A: Type} (a: A) (r: relation A),
-       max_elt r a $ \leftrightarrow [\lambda b \Rightarrow a = b] \cdot r \subseteq \emptyset$
+   \begin{lstlisting}[mathescape=true, language=coq]
+     Lemma max_elt_iff_kat {A: Type} (a: A) (r: relation A) :
+       max_elt r a -> [fun b => a = b] $ \cdot  $r $ \subseteq $ $\emptyset$
    \end{lstlisting}
 
     Теперь, когда нам нужно доказывать или использовать как гипотезу утверждение $ max\_elt\ r\ a $,
@@ -460,14 +461,14 @@ Coq - это один из таких инструментов, который �
         \\\hline
         $ min\_elt\ a\ r $ &
         $ \forall b, r\ b\ a \rightarrow \bot $ &
-        $ r \cdot  [eq a] \leq 0$
+        $ r \cdot  [eq\ a] \leq 0$
         \\\hline
         $ wmax\_elt\ a\ r $ &
         $ \forall b, r\ b\ a \rightarrow a = b $ &
         $ [!(eq\ a)] \cdot r \cdot [eq\ a] \leq 0 $
         \\\hline
       \end{tabularx}
-    где $ eq\ a := \lambda x \Rightarrow x = a $
+    где \lstinline[language=coq]{eq a := (fun x => x = a) : A -> Prop}
     \end{table}
 
 
@@ -508,11 +509,11 @@ Coq - это один из таких инструментов, который �
     А также для удобства можно определить тактики $ kat' $/$ hkat' $, которые будет применять $ lift\_to\_kat $, а потом вызывать $ kat $/$ hkat $.
     Это позволит скрыть все переформулировки за одной тактикой, которая умеет работать с оригинальными определениями и полностью их автоматизирует.
 
-    \begin{lstlisting}[mathescape=true, language=haskell]
+    \begin{lstlisting}[mathescape=true, language=coq]
     Ltac lift_to_kat :=
-       repeat rewrite $ \rightarrow $ restr_rel_iff_kat in *;
+       repeat rewrite -> restr_rel_iff_kat in *;
        ...
-       repeat rewrite $ \rightarrow $ wmax_elt_iff_kat in *.
+       repeat rewrite -> wmax_elt_iff_kat in *.
 
     Ltac kat'  := lift_to_kat; kat.
     Ltac hkat' := ligt_to_kat; hkat.
