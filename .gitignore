@@ -7,3 +7,5 @@ latex-styles/
 *.tct
 *.bcf
 *.pdf
+*.bbl
+*.blg
