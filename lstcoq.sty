@@ -129,12 +129,18 @@ literate=
     {\\mapsto}{{$\mapsto\;$}}1
     {\\hline}{{\rule{\linewidth}{0.5pt}}}1
 %
+    {\\cdot}{{$\cdot\;$}}1
+    {\\subseteq}{{$\subseteq\;\;$}}1
+    {\\emptyset}{{$\emptyset\;\;$}}1
+    {^+}{{$^+$}}1
+    {\\vee}{{$\vee\;$}}1
+    {\\wedge}{{$\wedge\;$}}1
 }[keywords,comments,strings]
 
 \lstnewenvironment{coq}{\lstset{language=Coq}}{}
 
 % pour inliner dans le texte
-\def\coqe{\lstinline[language=Coq, basicstyle=\small]}
+\def\coqe{\lstinline[language=Coq, basicstyle=\small, mathescape=true]}
 % pour inliner dans les tableaux / displaymath...
 \def\coqes{\lstinline[language=Coq, basicstyle=\scriptsize]}
 

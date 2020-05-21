@@ -1,4 +1,5 @@
 latex-styles/
+auto/
 *.aux
 *.log
 *.toc
