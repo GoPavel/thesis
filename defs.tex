@@ -1,0 +1,613 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DOCUMENT STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setlength{\abovecaptionskip}{8pt plus 3pt minus 2pt}
+%
+%\theoremstyle{definition}
+%\newtheorem{remark}{Remark}
+
+%\theoremstyle{theorem}
+%\newtheorem{theorem}{Theorem}
+
+%% Environments
+%%%%%%%%%%%%%%%
+
+%% Document body
+%\newcounter{axiomcounter}
+%\makeatletter
+%\newcommand{\labelAxiom}[2]{%
+%\hfill{\normalfont\textsc{(#1)}}\refstepcounter{axiomcounter}
+%\immediate\write\@auxout{%
+%  %\string\newlabel{#2}{{1}{\thepage}{{#1}}{axiomcounter.\number\value{axiomcounter}}{}}
+%  \string\newlabel{#2}{{\unexpanded{\normalfont\textsc{#1}}}{\thepage}{{\unexpanded{\normalfont\textsc{#1}}}}{axiomcounter.\number\value{axiomcounter}}{}}
+%}%
+%}
+%\makeatother
+
+%\beforePfSpace{1ex, 0pt}     % space above first proof environment
+%\afterPfSpace{1ex, 0pt}      % space below first proof environment
+%\interStepSpace{0pt}         % space above and below inner proof environment
+
+%% EndPreamble
+%\AtEndPreamble{%
+%  \theoremstyle{plain}
+%
+%  \newtheorem{notation}[theorem]{Notation}
+%  \newtheorem*{notation*}{Notation}
+%
+%  %% \newenvironment{ltheorem}[2]{\refstepcounter{theorem} \par\noindent{\textsc{Theorem} \thetheorem}\space (\textsc{#1}). #2}{}
+%  %% \newenvironment{llemma}[2]{\refstepcounter{theorem} \par\noindent{\textsc{Lemma} \thetheorem}\space (\textsc{#1}). #2}{}
+%  %% \newenvironment{lprop}[2]{\refstepcounter{theorem} \par\noindent{\textsc{Proposition} \thetheorem}\space (\textsc{#1}). #2}{}
+%
+%  \newcounter{claimcounter}
+%  \numberwithin{claimcounter}{theorem}
+%  \newenvironment{claim}[1]{ \refstepcounter{claimcounter}\par\noindent\underline{Claim \theclaimcounter:}\space#1}{}
+%  \newenvironment{claimproof}[1][\proofname]{%
+%    \renewcommand{\qedsymbol}{$\triangleleft$}%
+%    \begin{proof}[#1]%
+%  }{%
+%    \end{proof}%
+%  }
+%
+%  \crefname{claimcounter}{\text{Claim}}{\text{Claims}}
+%  \Crefname{claimcounter}{\text{Claim}}{\text{Claims}}
+%}
+
+%% Referencing
+%%%%%%%%%%%%%%
+
+%\crefname{appendix}{\S\hspace{-2.7pt}}{Appendix}
+%\Crefname{appendix}{Appendix}{Appendix}
+%\crefname{section}{\S}{Section}
+%\Crefname{section}{Section}{Section}
+%\crefformat{section}{#2\S{}#1#3}
+%\Crefformat{section}{Section #2#1#3}
+%\crefname{subsection}{\S\!}{Section}
+%\Crefname{subsection}{Section}{Section}
+%\crefformat{subsection}{#2\S{}#1#3}
+%\Crefformat{subsection}{Section #2#1#3}
+
+%\Crefname{figure}{\text{Figure}}{\text{Figures}}
+%\crefname{corollary}{\text{Corollary}}{\text{corollaries}}
+%\Crefname{corollary}{\text{Corollary}}{\text{Corollaries}}
+%\crefname{lemma}{\text{Lemma}}{\text{Lemmas}}
+%\Crefname{lemma}{\text{Lemma}}{\text{Lemmas}}
+%\crefname{proposition}{\text{Prop.}}{\text{Propositions}}
+%\Crefname{proposition}{\text{Proposition}}{\text{Propositions}}
+%\crefname{definition}{\text{Def.}}{\text{Definitions}}
+%\Crefname{definition}{\text{Definition}}{\text{Definitions}}
+%\crefname{notation}{\text{Notation}}{\text{Notations}}
+%\Crefname{notation}{\text{Notation}}{\text{Notations}}
+%\crefname{theorem}{\text{Theorem}}{\text{Theorems}}
+%\Crefname{theorem}{\text{Theorem}}{\text{Theorems}}
+%\crefname{figure}{\text{Fig.}}{\text{Figures}}
+%\Crefname{figure}{\text{Figure}}{\text{Figures}}
+
+%% Citations
+%%%%%%%%%%%%
+
+%\newcommand{\citeapp}[1]{\cite[\cref{#1}]{appendix}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEXT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Keywords
+%%%%%%%%%%%
+
+% Program keywords
+\newcommand{\textdom}[1]{\mathsf{#1}}
+\newcommand{\textcode}[1]{\texorpdfstring{\texttt{#1}}{#1}}
+\newcommand{\kw}[1]{\textbf{\textcode{#1}}}
+\newcommand{\skipc}{\kw{skip}}
+\newcommand{\ite}[3]{\kw{if}\;#1\:\kw{then}\;#2\;\\ \kw{else}\;#3}
+\newcommand{\while}[2]{\kw{while}\;#1\;\kw{do}\;#2}
+\newcommand{\assert}[1]{\kw{assert}\,({#1})}
+\newcommand{\assume}[1]{\kw{assume}\,({#1})}
+\newcommand{\ALT}{\;\;|\;\;}
+%\newcommand{\exec}[1]{\mathsf{Exec}({#1})}
+\newcommand{\trace}[2]{\tracea({#1},{#2})}
+\newcommand{\tracea}{\mathsf{trace}}
+\newcommand{\nexta}{\mathsf{next}_P}
+\newcommand{\nextp}[1]{\nexta({#1})}
+\newcommand{\snext}[2]{\snexta({#1},{#2})}
+\newcommand{\snexta}{\mathsf{snext}}
+\newcommand{\mine}[2]{\underset{#1}{\mathsf{min}}({#2})}
+\newcommand{\maxe}[1]{\mathsf{max}({#1})}
+\newcommand{\add}[1]{\mathsf{Add}({#1})}
+%\newcommand{\restrict}[2]{{#1}\cap{#2}}
+%\newcommand{\restrict}[2]{\mathsf{Restrict}({#1},{#2})}
+\newcommand{\restrict}[2]{\ensuremath{#1 |_{#2}}}
+\newcommand{\remove}[2]{\mathsf{Remove}({#1},{#2})}
+\newcommand{\combine}[2]{\mathsf{Combine}({#1},{#2})}
+%\newcommand{\cut}[2]{\mathsf{Cut}({#1},{#2})}
+\newcommand{\cons}[2][]{\mathsf{cons}_{\mathsf{#1}}{({#2})}}
+%\newcommand{\Prev}{\mathit{Prev}}
+%\newcommand{\moins}[3]{\mathsf{Insert}({#1},{#2},{#3})}
+\newcommand{\insmoa}{\mathsf{InsertMO}}
+\newcommand{\insmo}[3]{\insmoa({#1},{#2},{#3})}
+%\newcommand{\setrf}[3]{\mathsf{SetRF}({#1},{#2},{#3})}
+\newcommand{\setrf}[3]{\ensuremath{#1.\lRF[#3 \mapsto #2]}}
+\newcommand{\seterr}[2]{\mathsf{SetERR}({#1},{#2})}
+\newcommand{\rulename}[1]{{\normalfont\textsc{({#1})}}}
+%\newcommand{\C}{\mathcal{C}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\E}{\mathcal{E}}
+%\newcommand{\R}{\mathcal{R}}
+%\newcommand{\W}{\mathcal{W}}
+%\newcommand{\F}{\mathcal{F}}
+
+% Tool keywords
+\newcommand{\RCMC}{\textsc{RCMC}\xspace}
+\newcommand{\genmc}{\textsc{GenMC}\xspace}
+\newcommand{\hmc}{\textsc{HMC}\xspace}
+\newcommand{\genmcmath}{\textnormal{\genmc}\xspace}
+\newcommand{\Tracer}{\textsc{Tracer}\xspace}
+\newcommand{\Herd}{\textsc{Herd}\xspace}
+\newcommand{\Nidhugg}{\textsc{Nidhugg}\xspace}
+\newcommand{\CDSChecker}{\textsc{CDS\-Checker}\xspace}
+\newcommand{\CBMC}{\textsc{CBMC}\xspace}
+\newcommand{\CHESS}{\textsc{CHESS}\xspace}
+
+%% Math symbols
+%%%%%%%%%%%%%%%%
+
+\newcommand{\seq}{\mathbin{;}}
+\newcommand{\fun}{\rightarrow}
+
+%% Abbreviations
+%%%%%%%%%%%%%%%%
+
+\newcommand{\ie}{{i.e.,} }
+\newcommand{\eg}{{e.g.,} }
+\newcommand{\cf}{{cf.} }
+\newcommand{\etal}{{et~al.}}
+\newcommand{\wrt}{w.r.t.~}
+\newcommand{\stt}{s.t.~}
+\newcommand{\aka}{a.k.a~}
+
+%% Program display
+%%%%%%%%%%%%%%%%%%
+
+% Display
+\newcommand{\inarrC}[1]{\begin{array}{@{}c@{}}#1\end{array}}
+\newcommand{\inpar}[1]{\left(\begin{array}{@{}l@{}}#1\end{array}\right)}
+\newcommand{\inset}[1]{\left\{\begin{array}{@{}l@{}}#1\end{array}\right\}}
+\newcommand{\inarr}[1]{\begin{array}{@{}l@{}}#1\end{array}}
+\newcommand{\inarrII}[2]{\begin{array}{@{}l@{\;\;}||@{\;\;}l@{}}\inarr{#1}&\inarr{#2}\end{array}}
+\newcommand{\inarrIII}[3]{\begin{array}{@{}l@{\;\;}||@{\;\;}l@{\;\;}||@{\;\;}l@{}}\inarr{#1}&\inarr{#2}&\inarr{#3}\end{array}}
+\newcommand{\inarrIV}[4]{\begin{array}{@{}l@{\;\;}||@{\;\;}l@{\;\;}||@{\;\;}l@{\;\;}||@{\;\;}l@{}}\inarr{#1}&\inarr{#2}&\inarr{#3}&\inarr{#4}\end{array}}
+\newcommand{\inarrV}[5]{\begin{array}{@{}l@{\;\;}||@{\;\;}l@{\;\;}||@{\;\;}l@{\;\;}||@{\;\;}l@{\;\;}||@{\;\;}l@{}}\inarr{#1}&\inarr{#2}&\inarr{#3}&\inarr{#4}&\inarr{#5}\end{array}}
+
+%% Instructions
+
+\newcommand\ifGoto{\kw{if}-\kw{goto}}
+\newcommand{\ifGotoInst}[2]{\kw{if} \; #1 \; \kw{goto} \; #2}
+\newcommand{\assignInst}[2]{#1\;{:=}\;#2}
+
+\newcommand{\readInst }[3]{#2 \;{:=}\;[#3]^{#1}}
+\newcommand{\fenceInst}[1]{\kw{fence}^{#1}}
+\newcommand{\writeInst}[3]{[#2]^{#1}\;{:=}\;#3}
+\newcommand{\incInst}[6]{#3 \;{:=}\;\kw{FADD}_{#6}^{#1#2}({#4},{#5})}
+\newcommand{\casInst}[7]{#3 \;{:=}\;\kw{CAS}_{#7}^{#1#2}({#4},{#5},{#6})}
+
+%% Typesetting
+%%%%%%%%%%%%%%
+
+% Hyphenation
+\hyphenation{RCMC}
+\hyphenation{Nidhugg}
+\hyphenation{CDSChecker}
+\hyphenation{LLVM}
+\hyphenation{CBMC}
+\hyphenation{CHESS}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COLORS AND IMAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Colors
+%%%%%%%%%
+
+\colorlet{colorPO}{gray!60!black}
+\colorlet{colorJF}{blue!60!black}
+\colorlet{colorRF}{green!60!black}
+\colorlet{colorPRED}{violet}
+\colorlet{colorEW}{brown}
+\colorlet{colorMO}{orange}
+\colorlet{colorFR}{purple}
+\colorlet{colorECO}{red!80!green}
+\colorlet{colorSYN}{green!40!black}
+\colorlet{colorHB}{blue}
+\colorlet{colorPPO}{magenta}
+\colorlet{colorPB}{olive}
+\colorlet{colorRMW}{gray!40!black}
+\colorlet{colorRSEQ}{blue}
+\colorlet{colorSC}{violet}
+\colorlet{colorPSC}{violet}
+\colorlet{colorSCB}{violet}
+\colorlet{colorREL}{olive}
+\colorlet{colorTSO}{violet}
+\colorlet{colorCONFLICT}{olive}
+\colorlet{colorRACE}{red!90!black}
+\colorlet{colorWB}{orange!70!black}
+\colorlet{colorHIGHLIGHT}{blue}
+\colorlet{colorXO}{violet!80!black}
+
+%% TikZ
+%%%%%%%
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,shapes.multipart}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{patterns}
+
+\tikzset{
+   every path/.style={>=stealth},
+   po/.style={->,color=colorPO,thin,shorten >=-0.5mm,shorten <=-0.5mm},
+   ppo/.style={->,color=colorPPO,shorten >=-0.5mm,shorten <=-0.5mm},
+   sw/.style={->,color=colorSYN,shorten >=-0.5mm,shorten <=-0.5mm},
+   rf/.style={->,color=colorRF,dashed,shorten >=-0.5mm,shorten <=-0.5mm},
+   hb/.style={->,color=colorHB,thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   mo/.style={->,color=colorMO,dotted,very thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   wb/.style={->,color=colorWB,dotted,very thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   no/.style={->,dotted,thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   fr/.style={->,color=colorFR,dotted,thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   deps/.style={->,color=colorDEPS,dotted,thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   rmw/.style={->,color=colorRMW,very thick,shorten >=-0.5mm,shorten <=-0.5mm},
+   revisit/.style={rounded corners,fill=yellow!50!gray},
+   revisit2/.style={rounded corners,fill=yellow!50!gray!50!white},
+   stack/.style={rectangle split, rectangle split parts=#1,draw, anchor=center},
+   ew/.style={<->,dashed,,shorten >=-0.5mm,shorten <=-0.5mm,color=colorEW},
+   jf/.style={->,color=colorJF,dotted,thick,shorten >=-0.5mm,shorten <=-0.5mm},
+}
+
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+
+\newcommand*\circledb[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt,fill=blue!20] (char) {\small\textrm{#1}};}}
+\newcommand*\circledr[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt,fill=red!20] (char) {\small\textrm{#1}};}}
+\newcommand*\circledg[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt,fill=green!20] (char) {\small\textrm{#1}};}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ALGORITHMS AND CODE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% New definitions
+%%%%%%%%%%%%%%%%%%
+
+\algnewcommand\algorithmicswitch{\textbf{switch}}
+\algnewcommand\algorithmiccase{\textbf{case}}
+\algnewcommand\algorithmicdefaultcase{\textbf{otherwise}}
+\algnewcommand\algorithmicassert{\texttt{assert}}
+\algnewcommand\Assert[1]{\State \algorithmicassert(#1)}%
+\algnewcommand\algorithmiccontinue{\textbf{continue}}
+
+%% New "environments"
+%%%%%%%%%%%%%%%%%%%%%
+
+\algdef{SE}[SWITCH]{Switch}{EndSwitch}[1]{\algorithmicswitch\ #1\ \algorithmicdo}{\algorithmicend\ \algorithmicswitch}%
+\algdef{SE}[CASE]{Case}{EndCase}[1]{\algorithmiccase\ #1}{\algorithmicend\ \algorithmiccase}%
+\algdef{SE}[CASE]{DefaultCase}{EndCase}{\algorithmicdefaultcase}{\algorithmicend\ \algorithmiccase}%
+\algdef{SE}[DOWHILE]{Do}{DoWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
+\algtext*{EndSwitch}%
+\algtext*{EndCase}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MATH NOTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\set}[1]{\{{#1}\}}
+\newcommand{\setcomp}[2]{
+\ensuremath{
+	\left\{
+	\begin{array}{@{} l | l @{}}
+		\begin{array}{@{} l @{}}
+			#1
+		\end{array}
+		 &
+		 \begin{array}{@{} l @{}}
+			#2
+		\end{array}
+	\end{array}
+	\right\}
+}
+}
+%\renewcommand{\st}{\; | \;}
+\newcommand{\sem}[1]{\llbracket #1 \rrbracket}
+\newcommand{\pfn}{\rightharpoonup}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\dom}[1]{\textit{dom}{({#1})}}
+\newcommand{\codom}[1]{\textit{codom}{({#1})}}
+\newcommand{\before}[2]{{#1}_{#2}^\uparrow}
+\newcommand{\after}[2]{{#1}_{#2}^\downarrow}
+%\newcommand{\fv}[1]{fv{[{#1}]}}
+\newcommand{\tup}[1]{{\langle{#1}\rangle}}
+\newcommand{\nin}{\not\in}
+\newcommand{\subq}{\subseteq}
+\newcommand{\sqsubq}{\sqsubseteq}
+\newcommand{\supq}{\supseteq}
+\newcommand{\sqsupq}{\sqsubseteq}
+\newcommand{\size}[1]{|{#1}|}
+\newcommand{\block}[1]{\langle {#1}\rangle}
+\newcommand{\true}{\top}
+\newcommand{\maketil}[1]{{#1}\ldots{#1}}
+\newcommand{\til}{\maketil{,}}
+\newcommand{\cuptil}{\maketil{\cup}}
+\newcommand{\uplustil}{\maketil{\uplus}}
+\renewcommand*{\mathellipsis}{\mathinner{{\ldotp}{\ldotp}{\ldotp}}}
+\newcommand{\rst}[1]{|_{#1}}
+\newcommand{\imm}[1]{{#1}{\rst{\text{imm}}}}
+\renewcommand{\succ}[2]{\text{succ}_{#1}(#2)}
+\newcommand{\aite}[3]{(#1?#2,#3)}
+%\newcommand{\defeq}{\mathrel{\stackrel{\mathsf{def}}{=}}}
+\newcommand{\defeq}{%
+  \mathrel{\vbox{\offinterlineskip\ialign{%
+    \hfil##\hfil\cr
+    $\scriptscriptstyle\boldsymbol{\triangle}$\cr
+    \noalign{\kern0.15ex}
+    $=$\cr
+}}}}
+%\newcommand{\defeq}{\triangleq}
+\newcommand{\powerset}[1]{\mathcal{P}({#1})}
+\newcommand{\finpowerset}[1]{\mathcal{P}_{<\omega}({#1})}
+\renewcommand{\implies}{\Rightarrow}
+\newcommand{\eqdef}{\defeq}
+\newcommand{\exsts}[1]{\ensuremath{\exists #1.\ }}
+\newcommand{\for}[1]{\ensuremath{\forall #1.\ }}
+\newcommand{\fdef}{\ensuremath{\stackrel{\text{def}}{\iff}}}
+\newcommand{\suq}{\subseteq}
+\newcommand{\compat}{\ensuremath{\mathrel{\#}}}
+\newcommand{\ort}{\ensuremath{\mathrel{\bot}}}
+\newcommand{\revisit}[3]{\ensuremath{\mathsf{revisit}(#1, #2, #3)}}
+\newcommand{\cut}[3]{\ensuremath{\mathsf{cut}(#1, #2, #3)}}
+\newcommand{\inv}[1]{\ensuremath{#1^{-1}}}
+\newcommand{\refC}[1]{\ensuremath{#1^{?}}}
+\newcommand{\transC}[1]{\ensuremath{#1^{+}}}
+\newcommand{\reftransC}[1]{\ensuremath{#1^{*}}}
+\newcommand{\loc}[1]{\ensuremath{\lLOC(#1)}}
+\newcommand{\initG}{\ensuremath{G_0}}
+\newcommand{\concat}{\ensuremath{{+}\!\!{+}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EXECUTION GRAPHS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Configuration
+%%%%%%%%%%%%%%%%
+
+% Basic components
+\newcommand{\lG}{{G}}
+\newcommand{\lT}{{T}}
+\newcommand{\lD}{{D}}
+\newcommand{\lGm}{\Gamma}
+\newcommand{\lDl}{\Delta}
+% \newcommand{\Gmd}{\Gamma_{\delta}}
+% \newcommand{\Th}{\Theta}
+
+% Graph extension
+\newcommand{\ext}[1]{{#1}^{\mathit{ext}}}
+\newcommand{\pext}[1]{\mathsf{ext_P({#1})}}
+\newcommand{\setRF}[3]{{#1}[{#3}\xmapsto{\lRF}{#2}]}
+
+% Revisiting
+\newcommand{\grfa}{\mathsf{grf}}
+\newcommand{\grfrmwa}{\mathsf{grf}_\mathsf{rmw}}
+\newcommand{\grft}[3]{\grfa({#1},{#2},{#3})}
+\newcommand{\grftrmw}[3]{\grfrmwa({#1},{#2},{#3})}
+
+% Step
+\makeatletter
+\renewcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+
+\newcommand{\gstep}[1]{\xrightarrow{#1}}
+\newcommand{\gsteps}{\xrightarrow{}\mathrel{\vphantom{\to}^*}}
+
+\newcommand{\astep}[1]{\xRightarrow{#1}}
+\newcommand{\asteps}{\xRightarrow{}\mathrel{\vphantom{\to}^*}}
+\newcommand{\astepnr}[1]{\xRightarrow{#1}_{nr}}
+\newcommand{\astepsnr}{\xRightarrow{}_{nr}\mathrel{\vphantom{\to}^*}}
+\newcommand{\nasteps}{\xRightarrow{}\mathrel{\vphantom{\to}^n}}
+\newcommand{\nastepsnr}[1]{\xRightarrow{}_{nr}\mathrel{\vphantom{\to}^{#1}}}
+
+\newcommand{\istep}{\Rrightarrow}
+
+\newcommand{\leqlex}{<_{\text{lex}}}
+
+%% Events
+%%%%%%%%%
+
+\newcommand{\lE}{{\mathtt{E}}}
+\newcommand{\lBE}{{\mathtt{B}}}
+\newcommand{\lM}{{\mathtt{M}}}
+\newcommand{\lS}{{\mathtt{S}}}
+\newcommand{\lR}{{\mathtt{R}}}
+\newcommand{\lW}{{\mathtt{W}}}
+\newcommand{\lU}{{\mathtt{RMW}}}
+\newcommand{\lF}{{\mathtt{F}}}
+\newcommand{\lRES}{{\mathtt{Res}}}
+\newcommand{\lAT}{{\lE^\mathtt{ex}}}
+\newcommand{\lATR}{{\lR^\mathtt{ex}}}
+\newcommand{\lATRP}{{\lR^\mathtt{ex}_\mathtt{pending}}}
+\newcommand{\lATW}{{\lW^\mathtt{ex}}}
+
+\newcommand{\Init}{\mathsf{Init}}
+
+%% Access modes
+%%%%%%%%%%%%%%%
+
+\newcommand{\na}{\mathtt{na}}
+\newcommand{\rlx}{\mathtt{rlx}}
+\newcommand{\rel}{{\mathtt{rel}}}
+\newcommand{\acq}{{\mathtt{acq}}}
+\newcommand{\acqrel}{{\mathtt{acqrel}}}
+\newcommand{\sco}{{\mathtt{sc}}}
+
+%% Event labels
+%%%%%%%%%%%%%%%
+
+\newcommand{\prlab}[2]{{\lR}^{#1}({#2})}
+\newcommand{\pulab}[3]{{\lU}^{#1}({#2},{#3})}
+\newcommand{\rlab}[3]{{\lR}^{#1}({#2},{#3})}
+\newcommand{\erlab}[4]{{\lR}^{#1}({#2},{#3},{#4})}
+\newcommand{\wlab}[3]{{\lW}^{#1}({#2},{#3})}
+\newcommand{\flab}[1]{{\lF}^{#1}}
+%\newcommand{\ulab}[4]{{\lU}^{#1}({#2},{#3},{#4})}
+\newcommand{\errlab}{{\mathtt{error}}}
+\newcommand{\skplab}{{\mathtt{skip}}}
+\newcommand{\blab}{{\mathtt{stuck}}}
+
+%% Functions
+%%%%%%%%%%%%
+
+\newcommand{\lLAB}{{\mathtt{lab}}}
+\newcommand{\lTID}{{\mathtt{tid}}}
+\newcommand{\lIID}{{\mathtt{iid}}}
+\newcommand{\lNXT}{{\mathtt{nxt}}}
+\newcommand{\lTYP}{{\mathtt{typ}}}
+\newcommand{\lLOC}{{\mathtt{loc}}}
+\newcommand{\lMOD}{{\mathtt{mod}}}
+\newcommand{\lVAL}{{\mathtt{val}}}
+\newcommand{\lVALW}{{\mathtt{val_w}}}
+\newcommand{\lVALR}{{\mathtt{val_r}}}
+%\newcommand{\lELAB}{{\mathtt{elab}}}
+\newcommand{\lAVALS}{{\mathtt{exvals}}}
+
+%% Relations
+%%%%%%%%%%%%
+
+%% Basic relations
+\newcommand{\rf}{{\color{colorRF}\mathit{rf}}}
+\newcommand{\mo}{{\color{colorMO}\mathit{mo}}}
+\newcommand{\pred}{{\color{colorPRED}\mathit{pred}}}
+
+\newcommand{\tso}{{\color{colorTSO}\mathit{tso}}}
+
+\newcommand{\lPRED}{{\color{colorPRED}\mathtt{pred}}}
+\newcommand{\lX}{\mathtt{X}}
+\newcommand{\lPO}{{\color{colorPO}\mathtt{po}}}
+\newcommand{\lPPO}{{{\color{colorPPO}\mathtt{ppo}}}}
+\newcommand{\lJF}{{\color{colorJF} \mathtt{jf}}}
+\newcommand{\lRF}{{\color{colorRF} \mathtt{rf}}}
+\newcommand{\lRMW}{{\color{colorRMW} \mathtt{rmw}}}
+\newcommand{\lMO}{{\color{colorMO} \mathtt{mo}}}
+\newcommand{\lCO}{{\color{colorMO} \mathtt{co}}}
+\newcommand{\lEW}{{\color{colorEW} \mathtt{ew}}}
+\newcommand{\lWMO}{\lMO_{\rm weak}}
+\newcommand{\lMOx}{{\color{colorMO} \mathtt{mo}}_x}
+\newcommand{\lMOy}{{\color{colorMO} \mathtt{mo}}_y}
+\newcommand{\lRB}{{\color{colorFR} \mathtt{rb}}}
+\newcommand{\lFR}{{\color{colorFR} \mathtt{rb}}}
+\newcommand{\lFRx}{{\color{colorFR} \mathtt{rb}}_x}
+\newcommand{\lFRy}{{\color{colorFR} \mathtt{rb}}_y}
+\newcommand{\lECO}{{\color{colorECO} \mathtt{eco}}}
+\newcommand{\lPORF}{\lPO\lRF}
+\newcommand{\lRSEQ}{{\color{colorRSEQ}\mathtt{rseq}}}
+\newcommand{\lSW}{{\color{colorSYN}\mathtt{sw}}}
+\newcommand{\lHB}{{\color{colorHB}\mathtt{hb}}}
+\newcommand{\lWB}{{\color{colorWB} \mathtt{wb}}}
+\newcommand{\lXO}{{\color{colorXO}\mathtt{xo}}}
+
+\newcommand{\lSCB}{{\color{colorSCB} \mathtt{scb}}}
+\newcommand{\lPSC}{{\color{colorPSC} \mathtt{psc}}}
+\newcommand{\lTSO}{{\color{colorTSO} \mathtt{tso}}}
+\newcommand{\lPSCB}{\lPSC_{\rm base}}
+\newcommand{\lPSCF}{\lPSC_\lF}
+\newcommand{\lCONFLICT}{{\color{colorCONFLICT} \mathtt{conflict}}}
+\newcommand{\lRACE}{{\color{colorRACE} \mathtt{race}}}
+\newcommand{\lNARACE}{{\color{colorRACE} \mathtt{na-race}}}
+
+%% External relations
+\newcommand{\lmakeE}[1]{#1\mathtt{e}}
+\newcommand{\lRFE}{\lmakeE{\lRF}}
+\newcommand{\lMOE}{\lmakeE{\lMO}}
+\newcommand{\lFRE}{\lmakeE{\lFR}}
+\newcommand{\lSWE}{\lmakeE{\lSW}}
+\newcommand{\lECOE}{\lmakeE{\lECO}}
+
+%% Internal relations
+\newcommand{\lmakeI}[1]{#1\mathtt{i}}
+\newcommand{\lRFI}{\lmakeI{\lRF}}
+\newcommand{\lPBI}{\lmakeI{\lPB}}
+\newcommand{\lFRI}{\lmakeI{\lFR}}
+\newcommand{\lMOI}{\lmakeI{\lMO}}
+
+%% Weak relations
+\newcommand{\lmakeW}[1]{\mathtt{w}#1}
+\newcommand{\lWFR}{\lmakeW{\lFR}}
+\newcommand{\lWECO}{\lmakeW{\lECO}}
+\newcommand{\lWSCB}{\lmakeW{\lSCB}}
+\newcommand{\lWPSCB}{\lmakeW{\lPSCB}}
+\newcommand{\lWPSCF}{\lmakeW{\lPSCF}}
+\newcommand{\lWPSC}{\lmakeW{\lPSC}}
+%\newcommand{\lWB}{\lmakeW{\lMO}}
+
+%% Domains
+%%%%%%%%%%
+
+\newcommand{\Tid}{\mathsf{Tid}}
+\newcommand{\Loc}{\mathsf{Loc}}
+\newcommand{\Val}{\mathsf{Val}}
+\newcommand{\Lab}{\mathsf{Lab}}
+\newcommand{\ELab}{\mathsf{ELab}}
+\newcommand{\Mod}{\mathsf{Mod}}
+\newcommand{\Trace}{\mathsf{Trace}}
+\newcommand{\Conf}{\mathsf{Configuration}}
+\newcommand{\Exec}{\mathsf{Execution}}
+\newcommand{\Modr}{\mathsf{Mod}_{\lR}}
+\newcommand{\Modw}{\mathsf{Mod}_{\lW}}
+\newcommand{\Modf}{\mathsf{Mod}_{\lF}}
+\newcommand{\Modrmw}{\mathsf{Mod}_{\lU}}
+\newcommand{\Event}{\mathsf{Event}}
+\newcommand{\IEvent}{\ensuremath{\mathsf{Event}_0}}
+\newcommand{\MMLab}{\mathsf{Lab}_{\mathsf{MM}}}
+
+%% Instances
+%%%%%%%%%%
+\newcommand{\tid}{\ensuremath{i}}
+
+%% Models
+%%%%%%%%%
+
+\newcommand{\SC}{\ensuremath{\mathsf{SC}}\xspace}
+\newcommand{\RC}{\ensuremath{\mathsf{RC11}}\xspace}
+\newcommand{\IMM}{\ensuremath{\mathsf{IMM}}\xspace}
+\newcommand{\WRC}{\ensuremath{\mathsf{WRC11}}\xspace}
+\newcommand{\Wkmo}{\ensuremath{\mathsf{Wk}_{\lMO}}\xspace}
+\newcommand{\PROMISING}{\ensuremath{\mathsf{Promising}}\xspace}
+
+\newcommand{\DRFLB}{\texttt{DRF-LB-RLX}\xspace}
+\newcommand{\DRFRLX}{\texttt{DRF-RLX}\xspace}
+\newcommand{\DRFRA}{\texttt{DRF-RA}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTETAKING AND WIP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\TODO}[1]{{\color{red}\textbf{TODO: #1}}}
+\newcommand{\viktor}[1]{{\color{green!60!black}{\textit{V: #1}}}}
+\newcommand{\azalea}[1]{{\color{blue}{\textit{A: #1}}}}
+\newcommand{\michalis}[1]{{\color{red!40!green}{\textit{M: #1}}}}
+\newcommand{\eupp}[1]{{\color{olive}{\textit{E: #1}}}}
+
+\newcommand{\highlight}[1]{{\color{colorHIGHLIGHT}{#1}}}
+
+\definecolor{mygrey}{rgb}{0.8, 0.8, 0.8}
+\newcommand{\shade}[2][mygrey]{\colorbox{#1}{#2}}
+
+\newcommand{\norf}{\ensuremath{\bot}}
+
+%% Mutex
+%%%%%%%%%
+\newcommand{\consMX}[1]{\cons[\mathsf{mx}]{#1}}
+\newcommand{\MXEvent}{\ensuremath{\mathsf{MX}}}
