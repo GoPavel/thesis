@@ -382,14 +382,14 @@
     % TODO: Добавить линки где можно подробнее почитать про все это.
     \subsection{Алгебра Клини}
       % TODO: link на аксиоматизацию
-      Назовем \textit{Алгеброй Клини} кортеж $\langle A,+,\cdot,\_^*,0,1\rangle$ такой, что $\langle A, +, \cdot, 0, 1 \rangle$ - идемпотентное полукольцо и операция $ \_^* $ удовлетворяет ряду аксиом:
+      Назовем \textit{Алгеброй Клини} кортеж $\langle A,\cup,\cdot,\_^*,0,1\rangle$ такой, что $\langle A, \cup, \cdot, 0, 1 \rangle$ - идемпотентное полукольцо и операция $ \_^* $ удовлетворяет ряду аксиом:
       \begin{enumerate}
-        \item $ 1 + a \cdot a^* \leq a^* $
-        \item $ 1 + a^* \cdot a \leq a^* $
-        \item $ b + a \cdot x \leq x \Rightarrow a^* \cdot b \leq x $
-        \item $ b + x \cdot a \leq x \Rightarrow b \cdot a^* \leq x $
+        \item $ 1 \cup a \cdot a^* \leq a^* $
+        \item $ 1 \cup a^* \cdot a \leq a^* $
+        \item $ b \cup a \cdot x \leq x \Rightarrow a^* \cdot b \leq x $
+        \item $ b \cup x \cdot a \leq x \Rightarrow b \cdot a^* \leq x $
       \end{enumerate}
-      где  $ a \leq b \triangleq a + b = b$
+      где  $ a \leq b \triangleq a \cup b = b$
 
       Тогда за \textit{KA} обозначим аксиоматизированную теорию над алгеброй Клини, состоящую аксиом
       идемпотентного полу-кольца и аксиом (а-г).
@@ -425,11 +425,11 @@
       \textit{Клини алгебра с тестами}, это кортеж $\langle K,\mathbb{B}, [\cdot] \rangle$ такой, что:
 
       \begin{itemize}
-        \item $K$ - Клини алгебра $\langle A, +, \cdot, \_^*, 0, 1 \rangle $
+        \item $K$ - Клини алгебра $\langle A, \cup, \cdot, \_^*, 0, 1 \rangle $
         \item $\mathbb{B}$ - булева алгебра $\langle B, \wedge, \vee, \neg, \top, \bot \rangle $
         \item $[\cdot]$ - гомоморфизм из
           $\langle B, \vee, \wedge, \top, \bot \rangle$
-        в $\langle A, +,     \cdot, 1,    0 \rangle$
+        в $\langle A, \cup,     \cdot, 1,    0 \rangle$
       \end{itemize}
       % TODO надо ли сказать, что такое гомоморфизм?
       % TODO: сказать, что тесты должны быть разрешимы
@@ -465,7 +465,7 @@
     \subsection{Алгебры Клини с инверсией}
       Теперь добавим к алгебре Клини операцию инвертирования $ \_^{\smile} $, удовлетворяющую следующим аксиомам:
       \begin{enumerate}
-        \item $ (a + b)^{\smile} = a^{\smile} + b^{\smile} $
+        \item $ (a \cup b)^{\smile} = a^{\smile} \cup b^{\smile} $
         \item $ (a \cdot b)^{\smile} = b^{\smile} \cdot a^{\smile} $
         \item $ (a^*)^{\smile} = (a^{\smile})^* $
         \item $ {a^{\smile}}^{\smile} = a $
@@ -673,7 +673,7 @@
 
       \begin{lstlisting}[gobble=8]
         Definition max_elt {A: Type} (r: relation A) (a: A) :=
-          forall (b: A) (REL: r a b), False.
+          forall (b: A), not (r a b).
       \end{lstlisting}
 
       Оно не отвечает сигнатуре алгебры Клини с тестами, и его нельзя доказать автоматически.
@@ -766,13 +766,13 @@
           $ domb\ r\ p $ & $ \forall x y, r\ x\ y \rightarrow p\ y $ & $ r \cdot [!p] \leq 0 $
           \\\hline
 
-          $ max\_elt\ a\ r $ & $ \forall b, r\ a\ b \rightarrow \bot $ & $ [eq\ a] \cdot r \leq 0 $
+          $ max\_elt\ a\ r $ & $ \forall b, \neg (r\ a\ b)$ & $ [eq\ a] \cdot r \leq 0 $
           \\\hline
 
           $ wmax\_elt\ a\ r $ & $ \forall b, r\ a\ b \rightarrow a = b $ & $ [eq\ a] \cdot r \cdot [!(eq\ a)] \leq 0 $
           \\\hline
 
-          $ min\_elt\ a\ r $ & $ \forall b, r\ b\ a \rightarrow \bot $ & $ r \cdot  [eq\ a] \leq 0$
+          $ min\_elt\ a\ r $ & $ \forall b, \neg (r\ b\ a)$ & $ r \cdot  [eq\ a] \leq 0$
           \\\hline
 
           $ wmax\_elt\ a\ r $ & $ \forall b, r\ b\ a \rightarrow a = b $ & $ [!(eq\ a)] \cdot r \cdot [eq\ a] \leq 0 $
@@ -815,13 +815,13 @@
         $ minus\_rel\ r_1\ r_2 $ & $ r_1 \setminus r_2 $ & $ r_1 \sqcap !r_2 $
         \\\hline
 
-        $ irreflexive\ r $ & $ \forall x, r\ x\ x \rightarrow \bot $ & $ 1 \sqcap r \leq 0 $
+        $ irreflexive\ r $ & $ \forall x, \neg (r\ x\ x) $ & $ 1 \sqcap r \leq 0 $
         \\\hline
 
         $ acyclic\ r $ & $ irreflexive\ r^+ $ & $ 1 \sqcap r^+ \leq 0 $
         \\\hline
 
-        $ immediate\ r $ & $\!\! r\ a\ b \wedge (\forall c, r\ a\ c \!\rightarrow\! r\ c\ a \!\rightarrow\!\! \bot\!) $ & $ r \sqcap 1 $
+        $ immediate\ r $ & $\! r\ a\ b \wedge (\forall c, r\ a\ c \!\rightarrow\! \neg (r\ c\ b)) $ & $ r \sqcap 1 $
         \\\hline
 
         $ is\_total\ r $ & $\forall x y, r\ x\ y \vee r\ y\ x$ & $ r \sqcup r^\smile \leq 1$
