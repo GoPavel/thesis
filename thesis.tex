@@ -1,6 +1,6 @@
 \documentclass[times
-              %,specification
-              %,annotation
+              ,specification
+              ,annotation
               ]{itmo-student-thesis}
 
 \usepackage{amssymb}
@@ -28,17 +28,16 @@
 \studygroup{M3439}
 \title{Применение теории Алгебр Клини и ее расширений для автоматизации доказательств в системе Coq  }
 \author{Головин Павел Андреевич}{Головин П. А.}
-\supervisor{TODO}{TODO}{проф., д.т.н.}{главный научный сотрудник Университета ИТМО}
+\supervisor{Чивилихин Даниил Сергеевич}{Чивилихин Д. С.}{к.т.н.}{научный сотрудник Университета ИТМО}
 \publishyear{2020}
 %% Дата выдачи задания. Можно не указывать, тогда надо будет заполнить от руки.
-%\startdate{01}{сентября}{2018}
+\startdate{01}{сентября}{2019}
 %% Срок сдачи студентом работы. Можно не указывать, тогда надо будет заполнить от руки.
-%\finishdate{31}{мая}{2019}
+\finishdate{28}{мая}{2020}
 %% Дата защиты. Можно не указывать, тогда надо будет заполнить от руки.
-%\defencedate{15}{июня}{2019}
+\defencedate{1}{июня}{2020}
 
-%\addconsultant{Белашенков Н.Р.}{канд. физ.-мат. наук, без звания}
-%\addconsultant{Беззубик В.В.}{без степени, без звания}
+\addconsultant{Моисеенко Е. А.}{без степени, без звания}
 
 \secretary{Павлова О.Н.}
 
@@ -55,11 +54,14 @@
 \end{enumerate}}
 
 %%% Цель исследования
-\researchaim{TODO}
+\researchaim{Исследовать перспективность использования теории алгебры Клини и ее
+  расширений для упрощения формальных доказательств в системе Coq, связанных с моделями памяти.}
 
 %%% Задачи, решаемые в ВКР
 \researchtargets{\begin{enumerate}
-    \item TODO
+    \item Применение одной из существующих реализаций алгебры Клини к реальным доказательствам,
+      связанным с моделями памяти
+    \item Оценить количество доказательств, которые удалось автоматизировать
 \end{enumerate}}
 
 %%% Использование современных пакетов компьютерных программ и технологий
@@ -1091,22 +1093,23 @@
       \begin{table}[!h]
         \centering
         \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
-          Тактика & Полностью доказанные леммы & Частично доказанные леммы & Количество строк кода
+          Тактика & Полностью доказанные леммы &
+          Частично доказанные леммы & Количество строк сокращено 
           \\\hline
 
-          \coqe{kat} & 0 & 0 & 0
+          \coqe{kat} & 95 & 23 & 0
           \\\hline
 
-          \coqe{hkat} & 0 & 0 & 0
+          \coqe{hkat} & 81 & 13 & 0
           \\\hline
 
-          \coqe{hkat'} & 0 & 0 & 0
+          \coqe{hkat'} & 77 & 12 & 0
           \\\hline
 
-          \coqe{hkat''} & 0 & 0 & 0
+          \coqe{hkat''} & 4 & 1 & 0
           \\\hline
 
-          Всего: & 0 & 0 & 0
+          Всего: & 176 & 36 & 471
           \\\hline
         \end{tabularx}
         \caption{Статистика применения \textit{KAT} в библиотеке hahn}
@@ -1114,7 +1117,7 @@
         где \coqe{hkat'} - быстрая версия, \coqe{hkat''} - полная версия, \coqe{hkat} - их сумма.
       \end{table}
 
-  \chapterconclusion % TODO
+  \chapterconclusion
 
     Из описанных выше результатов следует что теория алгебры Клини действительно полезна применительно
     к моделями памяти и способна автоматизировать существенное количество доказательств.
@@ -1144,40 +1147,40 @@
 %% \startappendices из старого стилевика будет делать то же самое
 \appendix
 
-\chapter{Пример приложения}\label{sec:app:1}
+% \chapter{Пример приложения}\label{sec:app:1}
 
-  \begin{table}[!h]
-    \caption{Сравнение расширений алгебр Клини}
-    \label{tab1}
-    \centering
-    \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
-      Сигнатура &
-      Временная сложность сравнения на равенство &
-      Пространств. сложность сравнения на равенство &
-      Временная сложность проверки на пустоту &
-      Пространств. сложность проверки на пустоту
+%   \begin{table}[!h]
+%     \caption{Сравнение расширений алгебр Клини}
+%     \label{tab1}
+%     \centering
+%     \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
+%       Сигнатура &
+%       Временная сложность сравнения на равенство &
+%       Пространств. сложность сравнения на равенство &
+%       Временная сложность проверки на пустоту &
+%       Пространств. сложность проверки на пустоту
 
-      \\\hline
-      \textit{KA}
-      & TODO & PSpace & TODO & TODO
-      \\\hline
-      \textit{KAT}
-      & TODO & PSpace & TODO & TODO
-      \\\hline
-      \textit{KAC}
-      & TODO & PSpace & TODO & TODO
-      \\\hline
-      $\textit{KL}_{-}$
-      & TODO & ExpSpace & TODO & TODO
-      \\\hline
-      \textit{KL}
-      & TODO & ExpSpace & TODO & TODO
-      \\\hline
-      \textit{KAl}
-      & TODO & TODO & TODO & TODO
-      \\\hline
-    \end{tabularx}
-  \end{table}
+%       \\\hline
+%       \textit{KA}
+%       & TODO & PSpace & TODO & TODO
+%       \\\hline
+%       \textit{KAT}
+%       & TODO & PSpace & TODO & TODO
+%       \\\hline
+%       \textit{KAC}
+%       & TODO & PSpace & TODO & TODO
+%       \\\hline
+%       $\textit{KL}_{-}$
+%       & TODO & ExpSpace & TODO & TODO
+%       \\\hline
+%       \textit{KL}
+%       & TODO & ExpSpace & TODO & TODO
+%       \\\hline
+%       \textit{KAl}
+%       & TODO & TODO & TODO & TODO
+%       \\\hline
+%     \end{tabularx}
+%   \end{table}
 
 
 \end{document}
