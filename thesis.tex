@@ -7,7 +7,8 @@
 \usepackage{mathtools}
 \usepackage{lstcoq}
 \usepackage{graphicx}
-\usepackage[unicode=true,implicit=false, colorlinks=red]{hyperref}
+% TODO: link to fig,tab,lst lead to first page
+\usepackage[unicode=true,implicit=false, hidelinks]{hyperref}
 \usepackage{tikz}
 \usepackage{subfigure}
 \lstset
@@ -474,7 +475,7 @@
       тогда мы получим теорию, так называемую \textit{Алгебрами Клини с инверсией} (\textit{KAC}).
       В ней аналогично с \textit{KA} определяются (не)равенства, оценки и выводимость.
 
-      В алгебре отношений операции инвертирования соответствует операция переворачивания всех стрелок:
+      В алгебре отношений операции инвертирования соответствует операция переворачивания всех ребер:
       $$ a^\smile \triangleq \{ (y, x): (x, y) \in a \} $$
 
       \textit{KAC} разрешима и полна относительно бинарных отношений с операцией инверсии, но не полна
@@ -520,7 +521,8 @@
 
     % TODO: нужно сослаться на таблицу в тексте
     \begin{table}[!h]
-      \caption{Сравнение расширений алгебр Клини}\label{tab1}
+      \caption{Сравнение расширений алгебр Клини}
+      \label{tab:compare_algrebas}
       \centering
       \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
         Название & Пример доказываемого свойства & Сложность & Реализация в Coq
@@ -562,7 +564,10 @@
       авторам перед расширением функционала пришлось переписать ее с нуля. В ней реализована полная
       поддержка \textit{KAT} и \textit{KA}.
 
-      Главной особенностью relation-algebra является то, что она позволяет автоматически доказывать
+      % TODO: И это не особенность relation-algebra, а особенность KAT, так как мы можем свести
+      % гипотезы к общезначимым утверждениям
+      Главной особенностью relation-algebra является то, что она реализует алгоритм исключения гипотез\cite{},
+      что позволяет автоматически доказывать
       не только общезначимые, но и те (не)равенства которые следуют из гипотез определенного вида, а
       конкретнее, сводящиеся к равенствам Хоара ($ r = 0 $).
       % TODO: <<равенства>> Хоара - это какой-то не очень устоявщийся термин
@@ -575,7 +580,9 @@
       К примеру монотонность рассмотренной ранее ацикличность можно записать так:
       $$ r_1^+ \cap 1 \leq 0, r_2^+ \cap 1 \leq 0 \vdash (r_1 \cdot r_2)^+ \cap 1 \leq 0 $$
 
-      В своем интерфейса библиотека использует канонические структуры и классы типов, которые являются
+      % TODO: Плохое сравнение с абстрактными классами. Лучше написать, что библиотека использует
+      % какие-то средства полиморфизма.
+      В своем интерфейсе библиотека использует канонические структуры и классы типов, которые являются
       аналогами абстрактных классов в императивных языках программирования.
       Алгоритм разрешения (не)равенств обобщен с их помощью для любой структуры, которая отвечает
       сигнатуре и аксиомам \textit{KAT}.
@@ -669,7 +676,7 @@
 
       Для примера рассмотрим утверждение \coqe{max_elt a r}.
       Оно означает, что \coqe{a} является максимальным событием в отношении \coqe{r}, то есть из \coqe{a} нет исходящих
-      стрелок отношения. В hahn оно определяется так:
+      ребер отношения. В hahn оно определяется так:
 
       \begin{lstlisting}[gobble=8]
         Definition max_elt {A: Type} (r: relation A) (a: A) :=
@@ -812,24 +819,25 @@
       \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
         Название & Оригинальное определение & Новое определение
         \\\hline
-        $ minus\_rel\ r_1\ r_2 $ & $ r_1 \setminus r_2 $ & $ r_1 \sqcap !r_2 $
+        $ minus\_rel\ r_1\ r_2 $ & $ r_1 \setminus r_2 $ & $ r_1 \mathbin{\textcolor{red}{\cap !}}r_2 $
         \\\hline
 
-        $ irreflexive\ r $ & $ \forall x, \neg (r\ x\ x) $ & $ 1 \sqcap r \leq 0 $
+        $ irreflexive\ r $ & $ \forall x, \neg (r\ x\ x) $ & $ 1 \mathbin{\textcolor{red}{\cap}} r \leq 0 $
         \\\hline
 
-        $ acyclic\ r $ & $ irreflexive\ r^+ $ & $ 1 \sqcap r^+ \leq 0 $
+        $ acyclic\ r $ & $ irreflexive\ r^+ $ & $ 1 \mathbin{\textcolor{red}{\cap}} r^+ \leq 0 $
         \\\hline
 
-        $ immediate\ r $ & $\! r\ a\ b \wedge (\forall c, r\ a\ c \!\rightarrow\! \neg (r\ c\ b)) $ & $ r \sqcap 1 $
+        $ immediate\ r $ & $\! r\ a\ b \wedge (\forall c, r\ a\ c \!\rightarrow\! \neg (r\ c\ b)) $ & $ r \mathbin{\textcolor{red}{\cap}} 1 $
         \\\hline
 
-        $ is\_total\ r $ & $\forall x y, r\ x\ y \vee r\ y\ x$ & $ r \sqcup r^\smile \leq 1$
+        $ is\_total\ r $ & $\forall x y, r\ x\ y \vee r\ y\ x$ & $ r \cup r\mathbin{\textcolor{red}{^\smile}} \leq 1$
         \\\hline
       \end{tabularx}
       \caption{Переформулирование определений, которые не удалось выразить в KAT, но можно выразить в
         других расширениях алгебры Клини}
       \label{tab:redefine_fail}
+      Пояснение: \textcolor{red}{красным} выделены не выходящие в сигнатуру KAT операции
     \end{table}
 
     Теперь мы можем автоматически доказывать утверждения, которые удалось выразить с помощью
@@ -842,7 +850,7 @@
 
     Так же для удобства объявим тактики $ kat' $/$ hkat' $, которые будет применять $ lift\_to\_kat $, а
     потом вызывать $ kat $/ $ hkat $, что также скроет все переформулировки от ее
-    пользователя: см \hyperref[lst:define_lift]{Листинг \ref{lst:define_lift}}
+    пользователя (см. \hyperref[lst:define_lift]{Листинг \ref{lst:define_lift}})
 
     % TODO: fix floating
     \begin{lstlisting}[float=!h, gobble=4,
@@ -880,7 +888,7 @@
     знаний о базовом формализме, на которую мы можем опереться в свох рассуждениях. Например, зная, что
     мы можем легко доказать любое свойство бинарных отношейни с тестами, разработчик может выписать через
     (не)равенство необходимое преобразование текущего утверждения, доказать его одной тактикой
-    \coqe{(h)kat} и выболнить преборазование:
+    \coqe{(h)kat} и выполнить преборазование:
 
     \begin{lstlisting}[float=false, gobble=4,
       caption={Пример доказательства вспомогательного утверждения, необходимого для преобразования, с
@@ -895,7 +903,7 @@
     Qed.
     \end{lstlisting}
 
-    При этом большой плюс автоматического перебора в том, то он покрывает большее число простых
+    При этом плюс автоматического перебора в том, то он покрывает большее число простых
     случаев. Так, например, даже самое простое утверждение, содержащее пересечение отношений,
     \coqe{(h)kat} решить не способна.
 
@@ -1006,15 +1014,17 @@
       $(r \cup r')^+$.
       Затем необходимо заменить это отношения на его надмножество $r^+ \cup (r^* \cdot r')^+ \cdot r^+$.
       Факт того, что это действительно надмножество и такое преобразование
-      верно, вынесен в отдельную лемму \coqe{path_union} (\hyperref[lst:path_union]{Листинг \ref{lst:path_union}})
+      верно, вынесен в отдельную лемму \coqe{path_union} (\hyperref[lst:path_union_before]{Листинг \ref{lst:path_union_before}})
       с нетривиальным доказательством, которое использовало перебор с разной глубиной
       (\coqe{basic_solver n}).
 
-      Сейчас доказательство леммы полностью автоматизированно.
+      Сейчас доказательство леммы полностью автоматизированно (см.
+      \hyperref[lst:path_union_after]{Листинг \ref{lst:path_union_after}}).
 
-      \begin{lstlisting}[float=false, gobble=8, label={lst:path_union},
-        caption={Автоматизация сложных преобразований}]
-        Lemma path_union (r r': relation A) : (r \cup r')^+ \leq r^+ \cup (r^* \cdot r')^+ \cdot r^+.
+      \begin{lstlisting}[float=false, gobble=8, label={lst:path_union_before},
+        caption={Пример сложного доказательства, которое может быть полностью автоматизированно}]
+        Lemma path_union (r r': relation A) :
+          (r \cup r')^+ \leq r^+ \cup (r^* \cdot r')^+ \cdot r^+.
         Proof.
           apply inclusion_t_ind_right.
           unionL; [vauto|].
@@ -1026,8 +1036,14 @@
           rewrite <- inclusion_t_rt at 1; basic_solver 22.
           - rewrite !seqA, inclusion_t_rt at 1.
           rewrite <- (ct_end (r^* \cdot r')); basic_solver 12.
-          (* kat' *)
         Qed.
+      \end{lstlisting}
+
+      \begin{lstlisting}[float=false, gobble=8, label={lst:path_union_after},
+        caption={Пример полностью автоматизированного доказательства}]
+        Lemma path_union (r r': relation A) :
+          (r \cup r')^+ \leq r^+ \cup (r^* \cdot r')^+ \cdot r^+.
+        Proof. kat'. Qed.
       \end{lstlisting}
 
     \subsection{Примеры частичного применения \coqe{(h)kat}}
@@ -1131,7 +1147,8 @@
 \chapter{Пример приложения}\label{sec:app:1}
 
   \begin{table}[!h]
-    \caption{Сравнение расширений алгебр Клини}\label{tab1}
+    \caption{Сравнение расширений алгебр Клини}
+    \label{tab1}
     \centering
     \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
       Сигнатура &
