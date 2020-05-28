@@ -1354,6 +1354,43 @@
   $$\langle \cup, \cdot, \_^*, \emptyset, 1 \rangle$$
 
   $$ \text{rf} \subseteq \textcolor{red}{[R]} \cdot \text{rf} \cdot \textcolor{red}{[W]}$$
-  
+
+\begin{lstlisting}
+Lemma acyclic_union:
+(H$_1$: acyclic r) -> (H$_2$: acyclic (r' \cdot r^*)) ->
+acyclic (r $\cup$ r').
+Proof.
+unfold acyclic; ins.(*irreflexive(r $\cup\!\!\!$ r')^+*)
+rewrite path_union. (*irreflexive(r^+$\!\!\!$ \cup (r^*$\!\!\!$ \cdot r')^+$\!\!\!$ \cdot r^+)*)
+apply irreflexive_union; split; auto.
+rewrite irreflexive_seqC.
+rewrite ct_begin, !seqA; relsf.
+rewrite <- seqA; rewrite <- ct_begin.
+  by rewrite acyclic_seqC in H$_2$.
+Qed.
+\end{lstlisting}
+
+\newpage
+
+      \begin{lstlisting}[float=false, gobble=8, label={lst:path_union},
+        caption={Автоматизация сложных преобразований}]
+        Lemma path_union (r r': relation A) :
+          (r \cup r')^+ \leq r^+ \cup (r^* \cdot r')^+ \cdot r^+.
+        Proof.
+        apply inclusion_t_ind_right.
+        unionL; [vauto|].
+        by rewrite rtE; rewrite <- !ct_step; basic_solver 12.
+        relsf; unionL.
+        - by unionR left; rewrite ct_unit.
+        - by rewrite !seqA; rewrite <- ct_end; basic_solver 12.
+        - rewrite (ct_step (r^+ \cdot r')).
+        rewrite <- inclusion_t_rt at 1; basic_solver 22.
+        - rewrite !seqA, inclusion_t_rt at 1.
+        rewrite <- (ct_end (r^* \cdot r')); basic_solver 12.
+        (* kat. *)
+        Qed.
+      \end{lstlisting}
+
+
 \end{document}
  
