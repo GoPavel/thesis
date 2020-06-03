@@ -190,6 +190,8 @@
   содержит гонку и может иметь несколько вариантов исполнения.
 
   \begin{figure}[!h]
+    \caption{Пример параллельной программы, содержащей гонку}
+    \label{fig:pic1}
     \centering
     \begin{equation}
       \inarrII{
@@ -200,8 +202,6 @@
         \writeInst{}{x}{1} \\
       }
     \end{equation}
-    \caption{Пример параллельной программы, содержащей гонку}
-    \label{fig:pic1}
   \end{figure}
 
   % На рисунке \ref{fig:pic1} мы видим конкретное исполнение программы, то есть мы знаем, например, какие
@@ -215,6 +215,8 @@
   которое показывает где было прочитано записанное значение.
 
   \begin{figure}[!h]
+    \caption{Все возможные исполнения код на \hyperref[fig:pic1]{Рисунке \ref{fig:pic1}}}
+    \label{fig:pic2}
     \begin{minipage}[c][1\width]{0.3\textwidth}
       \begin{tikzpicture}[yscale=1,xscale=1.3]
 
@@ -283,8 +285,6 @@
 
       \end{tikzpicture}
     \end{minipage}
-    \caption{Все возможные исполнения код на \hyperref[fig:pic1]{Рисунке \ref{fig:pic1}}}
-    \label{fig:pic2}
   \end{figure}
 
   Мы абстрагируемся от кода программы, анализируя базовые отношения и стоим из них более сложные. Так
@@ -345,7 +345,7 @@
        \end{equation*}
        \item объединение:
        $$ a \cup b = \{(x, y) : (x, y) \in a ~\text{или}~ (x, y) \in b   \} $$
-       %
+
       \end{itemize}
       Также будем пользоваться нотацией для транзитивного замыкания: $ x^+ \triangleq x \cdot x^*$.
 
@@ -761,6 +761,8 @@
 
       % TODO: про T к этому моменту не было ни слова, вообще то он не входит в KAT.
       \begin{table}[!h]
+        \caption{Переформулирование определений в сигнатуру \textit{KAT}}
+        \label{tab:redefine_succ}
         \centering
         \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
           Название & Оригинальное определение & \textit{KAT}
@@ -823,8 +825,6 @@
           \\\hline
 
         \end{tabularx}
-        \caption{Переформулирование определений в сигнатуру \textit{KAT}}
-        \label{tab:redefine_succ}
         где
         $\top$ - универсальное отношение,
         \coqe{(eq a : A -> Prop)} - предикат равенства с \coqe{a},
@@ -835,6 +835,9 @@
       \end{table}
 
     \begin{table}[!h]
+      \caption{Переформулирование определений, которые не удалось выразить в KAT, но можно выразить в
+        других расширениях алгебры Клини}
+      \label{tab:redefine_fail}
       \centering
       \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
         Название & Оригинальное определение & Новое определение
@@ -854,9 +857,6 @@
         $ is\_total\ r $ & $\forall x y, r\ x\ y \vee r\ y\ x$ & $ r \cup r\mathbin{\textcolor{red}{^\smile}} \leq 1$
         \\\hline
       \end{tabularx}
-      \caption{Переформулирование определений, которые не удалось выразить в KAT, но можно выразить в
-        других расширениях алгебры Клини}
-      \label{tab:redefine_fail}
       Пояснение: \textcolor{red}{красным} выделены не выходящие в сигнатуру KAT операции
     \end{table}
 
