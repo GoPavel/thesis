@@ -22,7 +22,6 @@
   isbn         = {9781450349888},
   publisher    = {Association for Computing Machinery},
   address      = {New York, NY, USA},
-  url          = {https://doi.org/10.1145/3062341.3062352},
   doi          = {10.1145/3062341.3062352},
   booktitle    = {Proceedings of the 38th ACM SIGPLAN Conference on Programming
                   Language Design and Implementation},
@@ -59,7 +58,6 @@
   volume       = {52},
   number       = {7},
   issn         = {0001-0782},
-  url          = {https://doi.org/10.1145/1538788.1538814},
   doi          = {10.1145/1538788.1538814},
   journal      = {Commun. ACM},
   month        = jul,
@@ -75,7 +73,6 @@
   isbn         = {9781450374309},
   publisher    = {Association for Computing Machinery},
   address      = {New York, NY, USA},
-  url          = {https://doi.org/10.1145/800125.804029},
   doi          = {10.1145/800125.804029},
   booktitle    = {Proceedings of the Fifth Annual ACM Symposium on Theory of
                   Computing},
@@ -96,7 +93,6 @@
   isbn         = {9783642314230},
   publisher    = {Springer-Verlag},
   address      = {Berlin, Heidelberg},
-  url          = {https://doi.org/10.1007/978-3-642-31424-7_36},
   doi          = {10.1007/978-3-642-31424-7_36},
   booktitle    = {Proceedings of the 24th International Conference on Computer
                   Aided Verification},
@@ -140,12 +136,12 @@
   volume       = {8},
   number       = {1},
   year         = {2012},
-  url          = {https://doi.org/10.2168/LMCS-8(1:16)2012},
   doi          = {10.2168/LMCS-8(1:16)2012},
   timestamp    = {Tue, 14 May 2019 16:31:17 +0200},
   biburl       = {https://dblp.org/rec/journals/corr/abs-1105-4537.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org},
-  langid       = {english}
+  langid       = {english},
+  pdf          = {https://arxiv.org/pdf/1105.4537v3.pdf}
 }
 
 @article{kozen_kat,
@@ -171,19 +167,18 @@
   langid       = {english}
 }
 
-@article{hkat,
-  author       = {Cohen, Ernie},
-  year         = {1995},
-  month        = {03},
-  pages        = {},
-  title        = {Hypotheses in Kleene Algebra},
+@inproceedings{hkat,
+  title        = {Hypotheses in kleene algebra},
+  author       = {Edith Cohen},
+  year         = {1993},
+  pdf          = {https://pdfs.semanticscholar.org/941d/bcbc166dba5b07a4bad9537052383c8a99ea.pdf},
   langid       = {english}
 }
 
 @article{hkat_cpc,
   title        = {On the elimination of hypotheses in Kleene algebra with tests. Rap. tech.
                   2002-1879},
-  author       = {HARDIN, C and KOZEN, D},
+  author       = {Hardin, C and Kozen, D},
   journal      = {Computer Science Department, Cornell University},
   year         = {2002},
   langid       = {english},
@@ -240,4 +235,87 @@
   pdf          = {https://hal.archives-ouvertes.fr/hal-02021315/file/KaH.pdf},
   hal_id       = {hal-02021315},
   hal_version  = {v1},
+  langid       = {english}
+}
+
+@article{moreira,
+  author       = {Moreira, Nelma and Pereira, David and Sousa, Simão},
+  year         = {2015},
+  month        = {05},
+  pages        = {377-401},
+  title        = {Deciding Kleene algebra terms equivalence in Coq},
+  volume       = {84},
+  journal      = {Journal of Logical and Algebraic Methods in Programming},
+  doi          = {10.1016/j.jlamp.2014.12.004},
+  abstract     = {This paper presents a mechanically verified implementation of an algorithm for
+                  deciding the equivalence of Kleene algebra terms within the Coq proof assistant.
+                  The algorithm decides equivalence of two given regular expressions through an
+                  iterated process of testing the equivalence of their partial derivatives and does
+                  not require the construction of the corresponding automata. Recent theoretical and
+                  experimental research provides evidence that this method is, on average, more
+                  efficient than the classical methods based on automata. We present some
+                  performance tests, comparisons with similar approaches, and also introduce a
+                  generalization of the algorithm to decide the equivalence of terms of Kleene
+                  algebra with tests. The motivation for the work presented in this paper is that of
+                  using the libraries developed as trusted frameworks for carrying out certified
+                  program verification.},
+  langid       = {english}
+}
+
+@book{agda,
+  title        = {Towards a practical programming language based on dependent type theory},
+  author       = {Norell, Ulf},
+  volume       = {32},
+  year         = {2007},
+  publisher    = {Citeseer},
+  langid       = {english}
+}
+
+@book{hol,
+  title        = {Isabelle/HOL: a proof assistant for higher-order logic},
+  author       = {Nipkow, Tobias and Paulson, Lawrence C and Wenzel, Markus},
+  volume       = {2283},
+  year         = {2002},
+  publisher    = {Springer Science \& Business Media},
+  langid       = {english}
+}
+
+
+@inproceedings{idris,
+  author       = {Brady, Edwin C.},
+  title        = {Idris ---: Systems Programming Meets Full Dependent Types},
+  year         = {2011},
+  isbn         = {9781450304870},
+  publisher    = {Association for Computing Machinery},
+  address      = {New York, NY, USA},
+  doi          = {10.1145/1929529.1929536},
+  booktitle    = {Proceedings of the 5th ACM Workshop on Programming Languages Meets Program
+                  Verification},
+  pages        = {43–54},
+  numpages     = {12},
+  keywords     = {data description, dependent types},
+  location     = {Austin, Texas, USA},
+  series       = {PLPV ’11},
+  pdf          = {https://dl.acm.org/doi/pdf/10.1145/1929529.1929536},
+  langid       = {english}
+}
+
+@inproceedings{canonical_structures,
+  title        = {{Canonical Structures for the working Coq user}},
+  author       = {Mahboubi, Assia and Tassi, Enrico},
+  url          = {https://hal.inria.fr/hal-00816703},
+  booktitle    = {{ITP 2013, 4th Conference on Interactive Theorem Proving}},
+  address      = {Rennes, France},
+  editor       = {Sandrine Blazy and Christine Paulin and David Pichardie},
+  publisher    = {{Springer}},
+  series       = {LNCS},
+  volume       = {7998},
+  pages        = {19-34},
+  year         = {2013},
+  month        = Jul,
+  doi          = {10.1007/978-3-642-39634-2\_5},
+  pdf          = {https://hal.inria.fr/hal-00816703/file/main.pdf},
+  hal_id       = {hal-00816703},
+  hal_version  = {v2},
+  langid       = {english}
 }
