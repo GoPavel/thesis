@@ -144,19 +144,6 @@
   pdf          = {https://arxiv.org/pdf/1105.4537v3.pdf}
 }
 
-@article{kozen_kat,
-  title        = {Kleene algebra with tests},
-  author       = {Kozen, Dexter},
-  journal      = {ACM Transactions on Programming Languages and Systems
-                  (TOPLAS)},
-  volume       = {19},
-  number       = {3},
-  pages        = {427--443},
-  year         = {1997},
-  publisher    = {ACM New York, NY, USA},
-  langid       = {english}
-}
-
 @online{hahn,
   year         = {2020},
   title        = {A Coq library for lists and relations},
@@ -317,5 +304,121 @@
   pdf          = {https://hal.inria.fr/hal-00816703/file/main.pdf},
   hal_id       = {hal-00816703},
   hal_version  = {v2},
+  langid       = {english}
+}
+
+@inproceedings{kat_completeness,
+  author       = "Dexter Kozen and Frederick Smith",
+  title        = "Kleene algebra with tests: Completeness and decidability",
+  booktitle    = "Proc. 10th Int. Workshop Computer Science Logic (CSL'96)",
+  editor       = "D. van Dalen and M. Bezem",
+  publisher    = "Springer-Verlag",
+  address      = "Utrecht, The Netherlands",
+  series       = "Lecture Notes in Computer Science",
+  volume       = "1258",
+  month        = Sep,
+  year         = "1996",
+  pages        = "244--259",
+  pdf          = {https://www.cs.cornell.edu/~kozen/Papers/gs.pdf},
+  langid       = {english}
+}
+
+@techreport{kat_complexity,
+  author       = "Ernie Cohen and Dexter Kozen and Frederick Smith",
+  title        = "The complexity of {K}leene algebra with tests",
+  institution  = "Computer Science Department, Cornell University",
+  number       = "TR96-1598",
+  month        = Jul,
+  year         = "1996",
+  pdf          = {https://www.cs.cornell.edu/~kozen/Papers/ckat.pdf},
+  langid       = {english}
+}
+
+@Comment{proof of EXPSpace lower bound for compare}
+@inproceedings{complexity_of_regular_intersection,
+  author       = "F{\"u}rer, Martin",
+  editor       = "de Bakker, Jaco and van Leeuwen, Jan",
+  title        = "The complexity of the inequivalence problem for regular expressions with
+                  intersection",
+  booktitle    = "Automata, Languages and Programming",
+  year         = "1980",
+  publisher    = "Springer Berlin Heidelberg",
+  address      = "Berlin, Heidelberg",
+  pages        = "234--245",
+  abstract     = "The nondeterministic lower space bound {\$}{\$}{\backslash}sqrt n{\$}{\$}of Hunt,
+                  for the problem if a regular expression with intersection describes a non-empty
+                  language, is improved to the upper bound n. For the general inequivalence problem
+                  for regular expressions with intersection the lower bound cn matches the upper
+                  bound except for the constant c. And the proof for this tight lower bound is
+                  simpler than the proofs for previous bounds. Methods developed in a result about
+                  one letter alphabets are extended to get a complete characterization for the
+                  problem of deciding if one input-expression describes a given language. The
+                  complexity depends only on the property of the given language to be finite,
+                  infinite but bounded, or unbounded.",
+  isbn         = "978-3-540-39346-7",
+  langid       = {english}
+}
+
+@Comment{proof decidability of KL_}
+@inproceedings{petri_for_kal,
+  author       = {Brunet, Paul and Pous, Damien},
+  title        = {{Petri automata for Kleene allegories}},
+  booktitle    = {{Logic in Computer Science}},
+  year         = 2015,
+  pages        = {68-79},
+  month        = Jul,
+  address      = {Kyoto, Japan},
+  publisher    = {{IEEE}},
+  url          = {https://hal.archives-ouvertes.fr/hal-01073936},
+  doi          = {10.1109/LICS.2015.17},
+  keywords     = {algorithm ; bisimulation ; Petri nets ; PSPACE ; decidability ; Kleene algebra ;
+                  automata ; converse},
+  pdf          = {https://hal.archives-ouvertes.fr/hal-01073936/file/paka.pdf},
+  hal_id       = {hal-01073936},
+  hal_version  = {v3},
+  langid       = {english}
+}
+
+@inproceedings{dec_kal,
+  title        = {{Reversible Kleene lattices}},
+  author       = {Brunet, Paul},
+  url          = {https://hal.archives-ouvertes.fr/hal-01474911},
+  booktitle    = {{42nd International Symposium on Mathematical Foundations of Computer Science}},
+  address      = {Aalborg, Denmark},
+  organization = {{Kim G. Larsen}},
+  editor       = {Kim G. Larsen and Hans L. Bodlaender and Jean-Francois Raskin},
+  publisher    = {{Schloss Dagstuhl--Leibniz-Zentrum fuer Informatik}},
+  series       = {Leibniz International Proceedings in Informatics (LIPIcs)},
+  volume       = {83},
+  pages        = {66:1--66:14},
+  year         = {2017},
+  month        = Aug,
+  doi          = {10.4230/LIPIcs.MFCS.2017.66},
+  keywords     = {Lattice Theory ; Formal languages and automata ; Automata ; Petri nets ; Kleene
+                  algebra ; Decidability ; Complexity},
+  pdf          = {https://hal.archives-ouvertes.fr/hal-01474911/file/mfcs.pdf},
+  hal_id       = {hal-01474911},
+  hal_version  = {v3},
+  langid       = {english}
+}
+
+@inproceedings{axioms_kal,
+  author       = {Paul Brunet},
+  title        = {{A Complete Axiomatisation of a Fragment of Language Algebra}},
+  booktitle    = {28th EACSL Annual Conference on Computer Science Logic (CSL 2020)},
+  pages        = {11:1--11:15},
+  series       = {Leibniz International Proceedings in Informatics (LIPIcs)},
+  isbn         = {978-3-95977-132-0},
+  issn         = {1868-8969},
+  year         = {2020},
+  volume       = {152},
+  editor       = {Maribel Fern{\'a}ndez and Anca Muscholl},
+  publisher    = {Schloss Dagstuhl--Leibniz-Zentrum fuer Informatik},
+  address      = {Dagstuhl, Germany},
+  url          = {https://drops.dagstuhl.de/opus/volltexte/2020/11654},
+  urn          = {urn:nbn:de:0030-drops-116546},
+  doi          = {10.4230/LIPIcs.CSL.2020.11},
+  annote       = {Keywords: Kleene algebra, language algebra, completeness theorem, axiomatisation},
+  pdf          = {https://hal.archives-ouvertes.fr/hal-02024864v2/document},
   langid       = {english}
 }
