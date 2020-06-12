@@ -54,9 +54,9 @@
 %%% Содержание выпускной квалификационной работы (перечень подлежащих разработке вопросов)
 \plannedcontents{
   \begin{enumerate}
-    \item Изучение алгебр Клини на предмет использования в доказательствах связанных с моделями памяти
+    \item Изучение алгебр Клини на предмет использования в доказательствах, связанных с моделями памяти
     \item Анализ существующих реализаций алгебр Клини в Coq
-    \item Применение алгебры Клини к реальным связанным с моделями памяти доказательствам
+    \item Применение алгебры Клини к реальным доказательствам, связанным с моделями памяти
     \item Оценка результатов
   \end{enumerate}
 }
@@ -64,9 +64,15 @@
 %%% Исходные материалы и пособия
 \plannedsources{\begin{enumerate}
   \item Brunet P. Algebras of Relations : from algoritm to formal proofs. // 2016.
-  \item  Pous D. Kleene Algebra with Tests and Coq Tools for while Programs // Interactive Theorem
-    Proving, 2013.
-  \item Lahav O. Repairing Sequential Consistency in C/C++11. // 2017
+  \item Pous D. Kleene Algebra with Tests and Coq Tools for while Programs // Interactive Theorem
+    Proving  / ed. by S. Blazy, C. Paulin-Mohring, D. Pichardie.
+    — Berlin, Heidelberg : Springer Berlin Heidelberg, 2013. — P. 180–196. —
+    ISBN 978-3-642-39634-2.
+  \item Repairing Sequential Consistency in C/C++11 / O. Lahav [et al.] // Proceedings of the 38th ACM
+    SIGPLAN Conference on Programming Language Design and Implementation. — Barcelona, Spain :
+    Association for Computing Machinery, 2017. — P. 618–632. — (PLDI 2017). — ISBN 9781450349888. —
+    DOI: 10.1145/3062341.3062352.
+
 \end{enumerate}}
 
 %%% Цель исследования
@@ -314,7 +320,8 @@
   графы. Например, так как последнее поведение нельзя воспроизвести поочередным исполнением команд из
   разных потоков, то мы можем захотеть запретить его \cite{rc11}.
   Это легко сделать, потребовав иррефлексивность транзитивного замыкания
-  объединения отношений: $ (\textit{po} \cup \textit{rf})^+ $. 
+  объединения отношений: $ (\textit{po} \cup \textit{rf})^+ $.
+  Хотя в более сложных случаях такого ограничения не достаточно.
 
   Такой анализ обычно преследует следующие цели:
   \begin{itemize}
@@ -368,7 +375,7 @@
        где
        \begin{equation*}
         a^n \triangleq \begin{cases}
-          a^{n-1} \cdot a & n > 1\\
+          a^{n-1} \cdot a & n \ge 1\\
           1          & n = 0
         \end{cases}
        \end{equation*}
@@ -414,7 +421,7 @@
       \end{enumerate}
       где  $ a \leq b \triangleq a \cup b = b$
 
-      Тогда за \textit{KA} обозначим аксиоматизированную теорию над алгеброй Клини, состоящую аксиом
+      Тогда за \textit{KA} обозначим аксиоматизированную теорию над алгеброй Клини, состоящую из аксиом
       идемпотентного полу-кольца и аксиом (а-г).
 
       Записью $ \mathit{KA} \vdash f = g $ будем обозначать факт, что равенство $ f = g $, является
@@ -425,7 +432,7 @@
       Также \textit{KA} полна и корректна относительно алгебры отношений \cite{AlgebrasOfRelation}: 
       $ \mathit{Rel} \models f = g $ $ \Leftrightarrow \mathit{KA} \vdash f = g$.
 
-      Поэтому если мы формализуем в Coq процедуру разрешения \textit{KA}-(не)равенств, мы можем
+      Поэтому если мы формализуем в Coq процедуру разрешения \textit{KA}-(не)равенств, мы сможем
       автоматически доказывать общезначимые факты для бинарных отношений, которые удовлетворяют
       сигнатуре \textit{Rel}.
       Существующие реализации будут рассмотрены ниже.
@@ -547,11 +554,13 @@
       то получим богатую теорию \textit{аллегорий Клини (KAl)}.
 
       Недавние результаты показывают, что для такой теории существует система аксиом, которая полна и
-      корректна для бинарных отношений \cite{axioms_kal} (с доказательством на Coq). Она также разрешима
+      корректна, но пока только относительно регулярных языков \cite{axioms_kal}. Она также разрешима
       и EXPSpace-полная \cite{dec_kal}.
 
-      При этом еще остаются открытые вопросы, например, о возможности добавлении в теорию универсального
-      отношения ($\top \triangleq O \times O $) \cite{axioms_kal}.
+      Кроме создания системы аксиом для бинарных отношений, остается также открытым вопрос о добавлении
+      в теорию универсального отношения ($\top \triangleq O \times O $) \cite{axioms_kal}. Это позволило бы, например,
+      выразить тотальность отношения $r$, то есть факт того, что между любой парой событий есть ребро
+      хотя бы в одну сторону: $r \cup r^\smile \ge \top$.
       % TODO: поддерживает ли эта аксиоматизация тесты?
       
     \begin{table}[!h]
@@ -565,11 +574,11 @@
         \\\hline
         \textit{KAT} & Предикаты на доменах & PSpace & relation-algebra
         \\\hline
-        \textit{KAC} & Функциональные отношения & PSpace &
+        \textit{KAC} & Функциональные отношения & PSpace & ---
         \\\hline
-        \textit{KL}  & Ацикличность, Разность & EXPSpace &
+        \textit{KL}  & Ацикличность, Разность & EXPSpace & ---
         \\\hline
-        \textit{KAl} & \textit{KAC} + \textit{KL} & EXPSpace &
+        \textit{KAl} & --- & EXPSpace & ---
         \\\hline
       \end{tabularx}
     \end{table}
@@ -615,7 +624,7 @@
       то есть если факт того, что если для нескольких отношений свойство выполняется, то и для их
       комбинации оно тоже будет выполнено.
       К примеру монотонность пустоты отношений:
-      $$ r_1 \leq 0, r_2 \leq 0 \vdash (r_1 \cdot r_2) \leq 0 \;\;\;\;\;\;\;\;\;\;\;\;\; r \leq 0 \vdash r^+ \leq 0 $$
+      $$ r_1 \leq 0, r_2 \leq 0 \vdash (r_1 \cup r_2) \leq 0 \;\;\;\;\;\;\;\;\;\;\;\;\; r \leq 0 \vdash r^+ \leq 0 $$
 
       В своем интерфейсе библиотека использует канонические структуры и классы типов
       \cite{canonical_structures} в качестве средств полиморфизма. Это позволяет обобщить алгоритм
