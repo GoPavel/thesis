@@ -790,6 +790,7 @@
       важных определений, которые не удалось выразить через \textit{KAT},
       но удалось через другие расширения алгебры Клини.
 
+      % TODO: добавить про множества
       \begin{table}[!h]
         \caption{Переформулирование определений в сигнатуру \textit{KAT}}
         \label{tab:redefine_succ}
@@ -827,6 +828,11 @@
           $ wmin\_elt\ a\ r $ & $ \forall b, r\ b\ a \rightarrow a = b $ & $ r \cdot [eq\ a] \leq [eq\ a] \cdot r \cdot [eq\ a] $
           \\\hline
 
+          $DOM\ b\ r$ & $ \forall x y, r\ x\ y \rightarrow x = b $ & $ r \leq [eq\ b] \cdot r$
+          \\\hline
+          $COD\ b\ r$ & $ \forall x y, r\ x\ y \rightarrow y = b $ & $ r \leq r \cdot [eq\ b]$
+          \\\hline
+
           \multicolumn{3}{|>{\centering\hsize=3\hsize}X|}
             {Переформулированные утверждений, которые нельзя использовать в качестве гипотез}
           \\\hline
@@ -836,10 +842,6 @@
           $ reflexive\ r $ & $ \forall x, r\ x $ & $ 1 \leq r $
           \\\hline
 
-          $dom\ b\ r$ & $ \forall x y, r\ x\ y \rightarrow x = b $ & $ r \leq [eq\ b] \cdot r$
-          \\\hline
-          $cod\ b\ r$ & $ \forall x y, r\ x\ y \rightarrow y = b $ & $ r \leq r \cdot [eq\ b]$
-          \\\hline
         \end{tabularx}
         где
         \coqe{(eq a : A -> Prop)} - предикат равенства с \coqe{a},
@@ -870,7 +872,7 @@
         $ immediate\ r $ & $\! r\ a\ b \wedge (\forall c, r\ a\ c \!\rightarrow\! \neg (r\ c\ b)) $ & $ r \mathbin{\textcolor{red}{\cap}} 1 $
         \\\hline
 
-        $ is\_total\ r $ & $\forall x y, r\ x\ y \vee r\ y\ x$ & $ r \cup r\mathbin{\textcolor{red}{^\smile}} \leq \mathbin{\textcolor{red}{\top}}$
+        $ is\_total\ r $ & $\forall x y, r\ x\ y \vee r\ y\ x$ & $ r \cup r\mathbin{\textcolor{red}{^\smile}} x \ge \mathbin{\textcolor{red}{\top}}$
         \\\hline
 
         $ cross\_rel\ p_1\ p_2 $ & $ p_1\ x \wedge p_2\ y $ & $ [p_1] \cdot \mathbin{\textcolor{red}\top} \cdot [p_2] $
@@ -918,8 +920,8 @@
       тактикой \coqe{autorewrite} \cite{coq_man}, что позволит использовать динамическую базу
       утверждений для переписывания, которую можно пополнять по мере добавления новых определений.
     
-      Так же для удобства объявим тактики \coqe{(h)kat'}, которые будут применять \coqe{autorewrite},
-      а потом вызывать \coqe{(h)kat'}, что также скроет все переформулировки от ее
+      Так же для удобства объявим тактики \coqe{hahn_(h)kat}, которые будут применять \coqe{autorewrite},
+      а потом вызывать \coqe{(h)kat}, что также скроет все переформулировки от ее
       пользователя (см. \hyperref[lst:define_lift]{Листинг \ref{lst:define_lift}})
 
     % TODO: fix floating
@@ -929,8 +931,8 @@
       Hint Rewrite wmax_elt_iff_kat: redefDb.
       ...
       Ltac lift_to_kat_all := repeat autorewrite with redefDb in *.
-      Ltac kat'  := lift_to_kat; kat.
-      Ltac hkat' := ligt_to_kat; hkat.
+      Ltac hahn_kat  := lift_to_kat; kat.
+      Ltac hahn_hkat := ligt_to_kat; hkat.
       \end{lstlisting}
 
   \section{Сравнение с существующими решениями}
@@ -938,7 +940,7 @@
     На данный момент в hahn большинство доказательств состоит из ручного использования других, уже
     доказанных утверждений, их автоматического перебора и стандартных тактик Coq.
 
-    Проблема ручного использования очевидна. И по крайней мере от части такого труда \coqe{(h)kat'}
+    Проблема ручного использования очевидна. И по крайней мере от части такого труда \coqe{(h)kat}
     может помочь избавится.
 
     Автоматический же перебор тоже хорошо справляется с этой задачей, но он предназначен в первую
@@ -968,7 +970,7 @@
     ...
     (* current goal: irreflexive (dd^* \cdot (dd^* \cdot de \cdot ee^* \cdot ed)^+) *)
     assert (dd^* \cdot (dd^* \cdot de \cdot ee^* \cdot ed)^+ \leq (dd^* \cdot de \cdot ee^* \cdot ed)^+) as H.
-    { kat'. }
+    { kat. }
     rewrite -> H.
     (* current goal: irreflexive ((dd^* \cdot de \cdot ee^* \cdot ed) ^+) *)
     ...
