@@ -855,43 +855,42 @@
         \coqe{A} - тип доменов отношений, событий
       \end{table}
 
-    % TODO: fix indent
     % TODO: fix size of columns
-    \begin{table}[!h]
-      \caption{Переформулирование определений, которые не удалось выразить в KAT, но можно выразить в
-        других расширениях алгебры Клини}
-      \label{tab:redefine_fail}
-      \centering
-      \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
-        Название & Оригинальное определение (в логике первого порядка) & Новое определение
-        \\\hline
-        % $ minus\_rel\ r_1\ r_2 $ & $ r_1 \setminus r_2 $ & $ r_1 \mathbin{\textcolor{red}{\cap}}r_2\mathbin{\textcolor{red}{\neg}} $
-        % \\\hline
+      \begin{table}[!h]
+        \caption{Переформулирование определений, которые не удалось выразить в KAT, но можно выразить в
+          других расширениях алгебры Клини}
+        \label{tab:redefine_fail}
+        \centering
+        \begin{tabularx}{\textwidth}{|*{18}{>{\centering\arraybackslash}X|}}\hline
+          Название & Оригинальное определение (в логике первого порядка) & Новое определение
+          \\\hline
+          % $ minus\_rel\ r_1\ r_2 $ & $ r_1 \setminus r_2 $ & $ r_1 \mathbin{\textcolor{red}{\cap}}r_2\mathbin{\textcolor{red}{\neg}} $
+          % \\\hline
 
-        $ irreflexive\ r $ & $ \forall x. \neg (r\ x\ x) $ & $ 1 \mathbin{\textcolor{red}{\cap}} r \leq 0 $
-        \\\hline
+          $ irreflexive\ r $ & $ \forall x. \neg (r\ x\ x) $ & $ 1 \mathbin{\textcolor{red}{\cap}} r \leq 0 $
+          \\\hline
 
-        $ acyclic\ r $ & $ irreflexive\ r^+ $ & $ 1 \mathbin{\textcolor{red}{\cap}} r^+ \leq 0 $
-        \\\hline
+          $ acyclic\ r $ & $ irreflexive\ r^+ $ & $ 1 \mathbin{\textcolor{red}{\cap}} r^+ \leq 0 $
+          \\\hline
 
-        $ is\_total\ r $ & $\forall x y. r\ x\ y \vee r\ y\ x$ & $ r \cup r\mathbin{\textcolor{red}{^\smile}} x \ge \mathbin{\textcolor{red}{\top}}$
-        \\\hline
+          $ is\_total\ r $ & $\forall x y. r\ x\ y \vee r\ y\ x$ & $ r \cup r\mathbin{\textcolor{red}{^\smile}} x \ge \mathbin{\textcolor{red}{\top}}$
+          \\\hline
 
-        $ cross\_rel\ p_1\ p_2 $ & $ p_1\ x \wedge p_2\ y $ & $ [p_1] \cdot \mathbin{\textcolor{red}\top} \cdot [p_2] $
-        \\\hline
+          $ cross\_rel\ p_1\ p_2 $ & $ p_1\ x \wedge p_2\ y $ & $ [p_1] \cdot \mathbin{\textcolor{red}\top} \cdot [p_2] $
+          \\\hline
 
-        $ singl\_rel\ a\ b $ & $ x = a \wedge y = b $ & $ [eq\ a] \cdot  \mathbin{\textcolor{red}\top} \cdot [eq\ b] $
-        \\\hline
+          $ singl\_rel\ a\ b $ & $ x = a \wedge y = b $ & $ [eq\ a] \cdot  \mathbin{\textcolor{red}\top} \cdot [eq\ b] $
+          \\\hline
 
-      \end{tabularx}
-      Пояснение: \textcolor{red}{красным} выделены не выходящие в сигнатуру KAT связки,\\
-      где $\top$ - универсальное отношение, \coqe{(p$_1$, p$_2$ : A -> Prop)} - предикаты на событиях
-    \end{table}
+        \end{tabularx}
+        Пояснение: \textcolor{red}{красным} выделены не выходящие в сигнатуру KAT связки,\\
+        где $\top$ - универсальное отношение, \coqe{(p$_1$, p$_2$ : A -> Prop)} - предикаты на событиях
+      \end{table}
 
-    Написав предложенные переопределения и доказав соответствующие леммы об их корректности, мы сможем
-    автоматически доказывать утверждения, которые удалось выразить с помощью
-    алгебры Клини с тестами, если они общезначимы или следуют из утверждений, которые удалось
-    переформулировать в специальной форме.
+      Написав предложенные переопределения и доказав соответствующие леммы об их корректности, мы сможем
+      автоматически доказывать утверждения, которые удалось выразить с помощью
+      алгебры Клини с тестами, если они общезначимы или следуют из утверждений, которые удалось
+      переформулировать в специальной форме.
 
       Важно отметить, что общезначимость означает, что для алгоритма разрешения (не)равенств предикаты
       и атомарные отношения непрозрачны. То есть он не может использовать те свойства, которые следуют
