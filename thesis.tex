@@ -1348,6 +1348,8 @@
 
 \chapter{Картинки для слайдов}\label{sec:app:1}
 
+  $$ \vdash (x^* \cdot y^*)^* = (x \cup y)^* $$
+  $$ \vdash x \leq x \cup y $$
 
   $$\models r_1 \subseteq r_2 \Leftrightarrow \mathit{KA} \vdash r_1 \leq r_2 $$
 
@@ -1391,6 +1393,40 @@ Qed.
         Qed.
       \end{lstlisting}
 
+\begin{lstlisting}
+Lemma max_elt_iff_kat:
+  forall (a: A) (relation A), max_elt r a <-> [= a] \cdot \leq \emptyset
+
+Lemma max_elt_seq1: max_elt r a -> max_elt (r \cdot r') a.
+Proof.
+  repeat rewrite -> max_elt_iff_kat.
+  (* current goal: [= a] \cdot r \leq \emptyset -> [= a] \cdot r \cdot r' \leq \emptyset *)
+  hkat.
+Qed.
+
+\end{lstlisting}
+
+\begin{lstlisting}
+Lemma max_elt_iff_kat:
+  forall (a: A) (relation A), max_elt r a <-> [= a] \cdot \leq \emptyset
+
+Lemma max_elt_seq1: max_elt r a -> max_elt (r \cdot r') a.
+Proof.
+  unfold seq; red; ins; desf; apply H in REL; desf; eauto.
+Qed.
+
+\end{lstlisting}
+
+\begin{lstlisting}
+Lemma max_elt_iff_kat:
+  forall (a: A) (relation A), max_elt r a <-> [= a] \cdot \leq \emptyset
+
+Lemma max_elt_seq1: max_elt r a -> max_elt (r \cdot r') a.
+Proof.
+  hahn_hkat.
+Qed.
+
+\end{lstlisting}
 
 \end{document}
  
