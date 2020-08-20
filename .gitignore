@@ -7,7 +7,6 @@ auto/
 *.gz
 *.tct
 *.bcf
-*.pdf
 *.bbl
 *.blg
 *.out
