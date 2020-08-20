@@ -1,8 +1,6 @@
 * Презентация к дипломной работе
 
-  [[https://docs.google.com/presentation/d/1c9itHz_mKdMtt-jsgyNcBAzFgRIWwGmYwoPhsS744cY/edit?usp=sharing][Ссылка на google slides]]
-
-  [[https://docs.google.com/presentation/d/1yvQZNiBJ27dwnHgTJZ6JOn9aQXyNqLXSRXa7gYDbZcI/edit?usp=sharing][Новая презентация]]
+  [[https://docs.google.com/presentation/d/1yvQZNiBJ27dwnHgTJZ6JOn9aQXyNqLXSRXa7gYDbZcI/edit?usp=sharing][Google slides]]
 
 ** Метаинформация:
    - время 5-6 минут
